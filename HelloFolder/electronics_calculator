@@ -1,0 +1,99 @@
+import shutil
+t1="======================="
+t2="*ELECTRONICS CALCULATOR*"
+t3="======================="
+term_size = shutil.get_terminal_size((80, 20))
+middle_row= term_size.lines // 2
+print("\n" * (middle_row))
+print(t1.center(term_size.columns))
+print(t2.center(term_size.columns))
+print(t3.center(term_size.columns))
+
+
+
+
+print("Welcome! what would you like to calculate?")
+print(
+    "1. Ohm's law\n" 
+    "2. Resistance calculator\n" \
+    "3. Capacitance calculator\n" \
+    "4. AC circuit calculator\n" \
+    "5. Resonance frequency calculator\n" \
+    "6. Exit"
+)
+import sympy as sp
+choice = int(input("Enter your choice (1-6): "))
+if choice == 1:
+    n=input("What to calculate? (V/I/R): ")
+    if n == "V":
+        current = float(input("Enter current (A): "))
+        resistance = float(input("Enter resistance (Ω): "))
+        voltage = current * resistance
+        print(f"Voltage (V) = {voltage} volts")
+    elif n == "I":
+        voltage = float(input("Enter voltage (V): "))
+        resistance = float(input("Enter resistance (Ω): "))
+        current = voltage / resistance
+        print(f"Current (I) = {current} amperes")
+    elif n == "R":
+        voltage = float(input("Enter voltage (V): "))
+        current = float(input("Enter current (A): "))
+        resistance = voltage / current
+        print(f"Resistance (R) = {resistance} ohms")
+elif choice == 2:
+    n2=input("What is given? (V,I (i)/H,I,t (ii)/P,I (iii)/P,V (iv)")
+    if n2 == "i":
+        voltage = float(input("Enter voltage (V): "))
+        current = float(input("Enter current (A): "))
+        resistance = voltage / current
+        print(f"Resistance (R) = {resistance} ohms")
+    elif n2 == "ii":
+        heat=float(input("Enter heat (J): "))
+        current=float(input("Enter current (A): "))
+        time=float(input("Enter time (s): "))
+        resistance=heat/(current**2*time)
+        print(f"Resistance (R) = {resistance} ohms")
+    elif n2 == "iii":
+        power=float(input("Enter power (W): "))
+        current=float(input("Enter current (A): "))
+        resistance=power/(current**2)
+        print(f"Resistance (R) = {resistance} ohms")
+    elif n2 == "iv":
+        power=float(input("Enter power (W): "))
+        voltage=float(input("Enter voltage (V): "))
+        resistance=(voltage**2)/power
+        print(f"Resistance (R) = {resistance} ohms")
+elif choice == 3:
+    E0=8.854e-12  # Permittivity of free space in F/m
+    n3=input("What is given? (Q,V (i)/E0,A,d (ii)")
+    if n3 == "i":
+        charge=float(input("Enter charge (C): "))
+        voltage=float(input("Enter voltage (V): "))
+        capacitance=charge/voltage
+        print(f"Capacitance (C) = {capacitance} farads")
+    elif n3 == "ii":
+        area=float(input("Enter area (m^2): "))
+        distance=float(input("Enter distance (m): "))
+        capacitance=(E0*area)/distance
+        print(f"Capacitance (C) = {capacitance} farads")
+elif choice == 4:
+    w=float(input("Enter angular frequency (rad/s): "))
+    L=float(input("Enter inductance (H): "))
+    C=float(input("Enter capacitance (F): "))
+    resistance=float(input("Enter resistance (Ω): "))
+    Xl=w*L
+    Xc=w/C
+    impedance=sp.sqrt(resistance**2+(Xl-Xc)**2)
+    print(f"Inductive reactance (Xl) = {Xl} ohms")
+    print(f"Capacitive reactance (Xc) = {Xc} ohms")
+    print(f"Impedance (Z) = {impedance} ohms")
+elif choice == 5:
+    L=float(input("Enter inductance (H): "))
+    C=float(input("Enter capacitance (F): "))
+    resonance_frequency=1/(2*sp.pi*sp.sqrt(L*C))
+    print(f"Resonance frequency (f) = {resonance_frequency} Hz")
+
+    
+elif choice == 6:
+    print("Exiting the calculator. Goodbye!")
+
