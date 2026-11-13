@@ -1,2 +1,2 @@
-# Electronics-calculator
-one of my first git hub projects, an electronics calculator that helps solve different numerical problems involving simple fundamental laws of physics.
+# Basic-electronics-projects
+This section consists of some very easy and basic level projects as a beginner level learner and coder
